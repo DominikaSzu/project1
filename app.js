@@ -6,24 +6,35 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const modalInfo = document.querySelector('.modalText');
     
     
-    addTasks = () => {
+    addTask = () => {
         let insertedInput = inputTask.value;
         if (insertedInput == '') {
             modalBox.style.display = 'block';
         } else {
-          let task = document.createElement('LI');
+        let task = document.createElement('LI');
         task.textContent = insertedInput;
-        task.style.cssText= 'list-style-type:circle; text-align:left';
-        listTasks.appendChild(task);
+        task.classList.add('listElement');
+        let removeBtn = document.createElement('BUTTON');
+        removeBtn.classList.add('removeBtn');
+        removeBtn.innerText = 'X';
+        task.appendChild(removeBtn);
+        listTasks.appendChild(task);    
         inputTask.value = '';  
+        
+        removeBtn.addEventListener('click', removeTask);
         }   
     }
 
-    addBtn.addEventListener('click', addTasks);
+    addBtn.addEventListener('click', addTask);
     
     modalBox.addEventListener('click', function(event) {
         if (event.target != modalInfo) {
             modalBox.style.display = 'none';
         }
-    })
+    });
+    
+    removeTask = (event) => {
+        let item = event.target;       item.parentNode.parentNode.removeChild(item.parentNode)
+    };
+    
 });
