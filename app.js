@@ -18,10 +18,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
         removeBtn.classList.add('removeBtn');
         removeBtn.innerText = 'X';
         task.appendChild(removeBtn);
+        let completeBtn = document.createElement('BUTTON');
+        completeBtn.classList.add('completeBtn');
+        completeBtn.innerText = '✓';
+        task.appendChild(completeBtn);
         listTasks.appendChild(task);    
         inputTask.value = '';  
         
         removeBtn.addEventListener('click', removeTask);
+        completeBtn.addEventListener('click', function() {
+            task.classList.add('taskDone');
+        })
         }   
     }
 
