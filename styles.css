@@ -8,9 +8,9 @@ body, html {
     text-align: center;
     font-family: 'Merriweather', serif;
     background-color: #eeeeee;
-    max-width: 90vw;
+    max-width: 770px;
+/*    max-width: 90vw;*/
     min-height: 80vh;
-/*    max-height: 100vh;*/
     margin: auto;
     border-radius: 8%;
     box-sizing: border-box;
@@ -58,7 +58,6 @@ h2 {
 }
 
 .listTasks {
-    widows: 100%;
     margin: 1vh auto;
     padding-left: 5vw;
 }

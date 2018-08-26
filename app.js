@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const modalBox = document.querySelector('.modal');
     const modalInfo = document.querySelector('.modalText');
     const deleteTasksBtn = document.getElementById('deleteTasksBtn');
+    const saveListBtn = document.getElementById('saveListBtn');
     
 //    Add new task button
     
@@ -48,12 +49,35 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
     
     removeTask = (event) => {
-        let item = event.target;       item.parentNode.parentNode.removeChild(item.parentNode)
+        let item = event.target;       item.parentNode.parentNode.removeChild(item.parentNode);
+        
+        // REMOVE THIS ITEM FROM LOCAL STORAGE - TO DO
     };
     
     removeAllTasks = () => {
+        localStorage.removeItem('toDoList');
         listTasks.innerHTML = '';
     };
+    
+    saveTasksToLocalStorage = (event) => {
+//        Prevents form submission
+        event.preventDefault();
+
+//        Prevents submiting blank list
+        if (listTasks.innerHTML == '') return;
+        
+//        Save tasks to localStorage
+        
+        localStorage.setItem('toDoList', listTasks.innerHTML);
+        };
+    
+//        Check for saved list
+        let saved = localStorage.getItem('toDoList');
+        
+        if (saved) {
+            listTasks.innerHTML = saved;
+        }
+
     
     addBtn.addEventListener('click', addTask);
     
@@ -64,5 +88,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     });
     
     deleteTasksBtn.addEventListener('click', removeAllTasks);
+    
+    saveListBtn.addEventListener('click', saveTasksToLocalStorage);
     
 });
